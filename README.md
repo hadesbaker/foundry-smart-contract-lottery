@@ -27,10 +27,10 @@ make anvil
 
 ## Library
 
-If you're having a hard time installing the chainlink library, you can optionally run this command.
+If you're having a hard time installing the chainlink, solmate, or foundry-devops libraries, you can optionally run this command.
 
 ```
-forge install smartcontractkit/chainlink-brownie-contracts@0.6.1 --no-commit
+make install
 ```
 
 ## Deploy
