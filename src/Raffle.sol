@@ -5,6 +5,12 @@ import {VRFCoordinatorV2Interface} from "@chainlink/contracts/src/v0.8/interface
 import {VRFConsumerBaseV2} from "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import {AutomationCompatibleInterface} from "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol";
 
+/*
+ * @title A Decentralized Lottery Application
+ * @author Taki Baker Alyasri
+ * @notice This contract creates a Smart Contract Raffle
+ * @dev This contract is deployed via the DeployRaffle.s.sol script. The Interactions.s.sol script will create a subscription, fund it, and then add a consumer if the subscriptionId in HelperConfig.s.sol is not updated.
+ */
 contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
     /// ERRORS ///
     error Raffle__UpkeepNotNeeded(
@@ -85,15 +91,6 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         emit RaffleEnter(msg.sender);
     }
 
-    /**
-     * @dev This is the function that the Chainlink Keeper nodes call
-     * they look for `upkeepNeeded` to return True.
-     * the following should be true for this to return true:
-     * 1. The time interval has passed between raffle runs.
-     * 2. The lottery is open.
-     * 3. The contract has ETH.
-     * 4. Implicity, your subscription is funded with LINK.
-     */
     function checkUpkeep(
         bytes memory /* checkData */
     )
@@ -110,10 +107,6 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         return (upkeepNeeded, "0x0"); // can we comment this out?
     }
 
-    /**
-     * @dev Once `checkUpkeep` is returning `true`, this function is called
-     * and it kicks off a Chainlink VRF call to get a random winner.
-     */
     function performUpkeep(bytes calldata /* performData */) external override {
         (bool upkeepNeeded, ) = checkUpkeep("");
         // require(upkeepNeeded, "Upkeep not needed");
@@ -135,10 +128,6 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         emit RequestedRaffleWinner(requestId);
     }
 
-    /**
-     * @dev This is the function that Chainlink VRF node
-     * calls to send the money to the random winner.
-     */
     function fulfillRandomWords(
         uint256 /* requestId */,
         uint256[] memory randomWords

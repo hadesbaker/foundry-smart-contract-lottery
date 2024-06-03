@@ -1,5 +1,12 @@
 # Foundry Smart Contract Lottery
 
+by Taki Baker Alyasri
+
+- GitHub: [hadesbaker](https://www.github.com/hadesbaker)
+- Twitter: [hadesbaker](https://www.twitter.com/hadesbaker)
+- LinkedIn: [Taki Baker](https://www.linkedin.com/in/taki-baker-4a60851a5/)
+- Portfolio: [takibaker.netlify.app](https://takibaker.netlify.app)
+- 
 # Getting Started
 
 ## Requirements
@@ -12,7 +19,7 @@
 ## Quickstart
 
 ```
-git clone https://github.com/hadesbaker/foundry-smart-contract-lottery
+git clone https://github.com/hadesbaker/foundry-smart-contract-lottery.git
 cd foundry-smart-contract-lottery
 forge build
 ```
